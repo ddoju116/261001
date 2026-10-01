@@ -22,6 +22,18 @@
 
 ## 이미지
 
+### 실제 여행지 사진
+
+방문 여행지 12곳과 추천 여행지 4곳의 카드·상세·찜 목록에는 Wikimedia Commons의 실제 장소 사진을 사용합니다. 16장 모두 `assets/photos/`에 로컬 파일로 저장하여 오프라인에서도 표시합니다.
+
+- [사진별 원본·저작자·라이선스 목록](photos.html)
+- [원본 메타데이터](assets/photos/sources.json)
+- 사진은 CC BY-SA 3.0, CC BY-SA 4.0, CC0 등 각 파일에 명시된 조건을 따릅니다. 해당 라이선스는 사진에 적용됩니다.
+- Wikimedia가 제공하는 축소본을 사용하며 카드 화면에서 CSS로 일부가 잘려 보일 수 있습니다. 원본 픽셀에 색보정이나 합성은 하지 않았습니다.
+- `scripts/fetch-photos.ps1`은 사진과 출처를 수집하고 `scripts/integrate-photos.cjs`는 사이트용 메타데이터와 출처 페이지를 만듭니다. 완성 파일이 포함되어 있어 사이트를 실행할 때 이 스크립트를 실행할 필요는 없습니다.
+
+### 메인 배너와 기본 일러스트
+
 `assets/hero-landscape.png`: 내장 image_gen 도구로 생성한 독창적인 회화풍 풍경. 특정 실제 여행지나 사용자 촬영 사진이 아닙니다. 최종 프롬프트:
 
 > Use case: illustration-story. Asset: ultra-wide panoramic hero artwork for a refined Korean personal travel journal website, no text. Hand-painted oil pastel and gouache on textured linen, literary European travel illustration. Dreamlike but elegant alpine lake landscape: deep forest green wildflower meadow in foreground, small pale-yellow and white flowers, an idyllic ochre and terracotta village with a church spire along the left lake shore, a winding ivory footpath, turquoise muted lake sweeping from center to right, distant slate teal alpine mountains, layered pale sage ridges, hazy creamy pale yellow sky. Low afternoon sun, tranquil nostalgic adventurous atmosphere. Panoramic composition approx 3:1, detailed painterly brushwork, soft edges, sophisticated earthy greens with restrained blue. No people close-up, no writing, no logos, no UI, not photography. Center upper sky open and light. Save as a website illustration.
