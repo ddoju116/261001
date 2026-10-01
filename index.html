@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f8f1">
+  <meta name="description" content="다녀온 여행을 간직하고 다음 여행을 꿈꾸는 개인 여행 아카이브. 여행 기록, 세계지도, 취향을 잇는 여행지 추천.">
+  <title>여행의 페이지 — A personal atlas</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="assets/world.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#journal">본문으로 건너뛰기</a>
+<header class="site-header wrap">
+  <a class="brand" href="#" aria-label="여행의 페이지 홈"><span class="brand-symbol">✳</span><span>여행의 페이지<small>A PERSONAL ATLAS</small></span></a>
+  <nav aria-label="주요 메뉴"><a href="#journal">여행 기록</a><a href="#atlas">나의 여행지도</a><a href="#discover">다음 여행</a></nav>
+  <button class="quiet saved-button" id="open-saved">♡ <span>가고 싶은 곳</span> <b id="saved-count">0</b></button>
+</header>
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy wrap"><p class="eyebrow"><span class="tiny-star">✳</span> EVERY JOURNEY, A NEW PAGE</p>
+      <h1 id="hero-title">다녀온 곳은 추억으로,<br>다음 여행은 설렘으로.</h1>
+      <p class="hero-description">세상 곳곳에 남겨둔 나의 발자취.<br class="mobile-only"> 그 이야기를 모아, 또 다른 여행을 시작해요.</p>
+      <a class="button primary-outline" href="#journal">나의 여행 펼쳐보기 <span>↗</span></a>
+    </div>
+    <div class="hero-art"><img src="assets/hero-landscape.png" alt="초록 들꽃 언덕과 호숫가 마을, 푸른 알프스가 펼쳐진 회화풍 여행 풍경" fetchpriority="high"><div class="art-caption"><span>Somewhere between memories & dreams.</span><span>ILLUSTRATED LANDSCAPE · 001</span></div></div>
+  </section>
+  <div class="stats wrap"><p>조금씩 넓어지는,<br><em>나만의 세계.</em></p><div><strong id="stat-places">12</strong><span>다녀온 여행지</span></div><div><strong id="stat-countries">10</strong><span>방문 국가·지역</span></div><div><strong>02</strong><span>발자취를 남긴 대륙</span></div><a href="#atlas">지도로 만나는 나의 여행 <span>↗</span></a></div>
+  <section class="section wrap" id="journal" aria-labelledby="journal-title">
+    <div class="section-heading"><div><p class="eyebrow">CHAPTER 01 / THE PLACES I'VE BEEN</p><h2 id="journal-title">오래 기억하고 싶은 곳들<span class="heading-dot">.</span></h2><p class="muted">익숙한 이름 안에, 나만의 여행 이야기를 차곡차곡.</p></div><button class="button" id="add-place"><span>＋</span> 여행 기록 추가</button></div>
+    <div class="toolbar"><div class="filter-group" id="region-filters" aria-label="여행지 대륙 필터"><button class="chip active" data-region="all" aria-pressed="true">전체 <span>12</span></button><button class="chip" data-region="europe" aria-pressed="false">유럽 <span>8</span></button><button class="chip" data-region="asia" aria-pressed="false">아시아 <span>4</span></button><button class="chip" data-region="other" aria-pressed="false">그 외 <span>0</span></button></div><label class="search"><span aria-hidden="true">⌕</span><input type="search" id="search" placeholder="어떤 여행을 찾고 있나요?" aria-label="여행지 이름, 국가, 키워드 검색"><kbd>/</kbd></label></div>
+    <div class="card-grid" id="visited-grid" aria-live="polite"></div>
+    <div class="show-more"><button class="text-button" id="show-more">나머지 여행 기록 펼치기 <span>↓</span></button><span class="small muted" id="record-count"></span></div>
+  </section>
+  <section class="atlas-section" id="atlas" aria-labelledby="atlas-title"><div class="wrap">
+    <div class="section-heading"><div><p class="eyebrow">CHAPTER 02 / CONNECTING THE DOTS</p><h2 id="atlas-title">발자취가 이어지는 세계지도.</h2><p class="muted">점 하나에는 한 번의 여행이, 선 하나에는 또 다른 이야기가.</p></div><button class="button" id="edit-route">루트 편집 <span>↗</span></button></div>
+    <div class="map-layout"><div class="map-panel"><div class="map-top"><div class="map-tabs" aria-label="지도 범위"><button data-map="world" class="active" aria-pressed="true">세계</button><button data-map="europe" aria-pressed="false">유럽</button><button data-map="asia" aria-pressed="false">아시아</button></div><span class="map-label">MY PERSONAL ATLAS</span></div><svg id="world-map" viewBox="0 0 1000 490" role="group" aria-label="방문 여행지와 예시 루트. 각 점을 선택해 기록을 열 수 있습니다."><defs><pattern id="map-grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="#cdd7cf" stroke-width=".5" opacity=".35"/></pattern></defs><rect x="0" y="0" width="1000" height="490" fill="url(#map-grid)"/><g id="map-content"><g id="land"></g><g id="route-lines"></g><g id="map-pins"></g></g></svg><div class="map-bottom"><span><i class="legend-dot"></i> 다녀온 곳 <i class="legend-line"></i> <span id="route-legend">예시 연결선</span></span><span>지도 위 점을 눌러보세요 ↗</span></div></div>
+    <aside class="route-panel"><div class="route-top"><p class="eyebrow">TRAVEL ROUTE</p><span class="tag" id="route-status">예시 루트</span></div><h3 id="route-title">유럽에서 아시아까지</h3><p class="small muted" id="route-description">방문지를 연결한 예시입니다.<br>실제 여행 순서에 맞게 편집해 보세요.</p><ol id="route-list"></ol><p class="route-footnote">국가·지역은 대표 도시 기준으로 표시됩니다.</p></aside></div>
+    <div class="atlas-note"><span>✳</span> 여행은 끝나도, 지도 위의 이야기는 계속됩니다.</div>
+  </div></section>
+  <section class="section wrap" id="discover" aria-labelledby="discover-title"><div class="section-heading"><div><p class="eyebrow">CHAPTER 03 / YOUR NEXT CHAPTER</p><h2 id="discover-title">아직 펼쳐보지 않은 페이지.</h2><p class="muted">지나온 여행의 취향을 따라, 다음에 만나면 좋을 곳들.</p></div><label class="recommend-select">여행 취향 <select id="interest-filter"><option value="all">모든 여행</option><option value="nature">자연과 풍경</option><option value="city">도시와 산책</option></select></label></div><div class="recommend-grid" id="recommend-grid"></div><p class="recommend-note">방문 목록을 바탕으로 고른 에디터 추천입니다. 카드에서 추천 이유와 공식 관광 정보를 확인해 보세요.</p></section>
+  <section class="closing wrap"><span class="tiny-star">✳</span><p>어디로 떠나든,<br>이야기는 계속될 테니까.</p><a class="button" href="#discover">다음 페이지를 만나러 <span>↗</span></a><span class="closing-flower" aria-hidden="true">❋</span></section>
+</main>
+<footer class="wrap"><div class="footer-top"><a class="brand" href="#"><span class="brand-symbol">✳</span><span>여행의 페이지<small>COLLECT MOMENTS, NOT THINGS.</small></span></a><div class="footer-tools"><button class="text-button" id="export-data">기록 내보내기 ↗</button><button class="text-button" id="import-data">기록 불러오기 ↗</button><input id="import-file" type="file" accept="application/json,.json" hidden></div></div><div class="footer-bottom"><span>© <span id="year"></span> 여행의 페이지. Made for the curious.</span><span>나의 기록은 이 브라우저에 저장됩니다.</span></div></footer>
+<dialog id="detail-dialog" aria-labelledby="detail-title"><button class="dialog-close" aria-label="닫기">×</button><div id="detail-content"></div></dialog>
+<dialog id="editor-dialog" aria-labelledby="editor-title"><button class="dialog-close" aria-label="닫기">×</button><div class="dialog-body"><p class="eyebrow">A NEW MEMORY</p><h2 id="editor-title">새로운 여행의 페이지</h2><form id="place-form"><div class="form-row"><label>여행지 이름<input name="name" required maxlength="40" placeholder="예: 바르셀로나"></label><label>영문 이름<input name="en" maxlength="60" placeholder="Barcelona"></label></div><div class="form-row"><label>국가·지역<input name="country" required maxlength="40" placeholder="스페인"></label><label>대륙<select name="region"><option value="europe">유럽</option><option value="asia">아시아</option><option value="other">그 외</option></select></label></div><label>한 줄 소개<input name="description" required maxlength="180" placeholder="이 여행을 떠올리게 하는 한 문장"></label><div class="form-row"><label>지도 위도 (선택)<input name="lat" type="number" min="-85" max="85" step="any" placeholder="41.39"></label><label>지도 경도 (선택)<input name="lon" type="number" min="-180" max="180" step="any" placeholder="2.17"></label></div><p class="small muted">위도·경도를 모두 입력하면 지도에 표시됩니다.</p><button class="button dark" type="submit">여행 기록 만들기 <span>＋</span></button></form></div></dialog>
+<dialog id="route-dialog" aria-labelledby="route-editor-title"><button class="dialog-close" aria-label="닫기">×</button><div class="dialog-body"><p class="eyebrow">CONNECT YOUR JOURNEY</p><h2 id="route-editor-title">나의 여행 루트 편집</h2><p class="muted">포함할 여행지를 선택하고 화살표로 순서를 바꿔주세요.</p><div id="route-editor-list"></div><button class="button dark" id="save-route">이 순서로 저장 <span>✓</span></button></div></dialog>
+<dialog id="saved-dialog" aria-labelledby="saved-title"><button class="dialog-close" aria-label="닫기">×</button><div class="dialog-body"><p class="eyebrow">MY WISHLIST</p><h2 id="saved-title">가고 싶은 곳</h2><div id="saved-list"></div></div></dialog>
+<dialog id="import-dialog" aria-labelledby="import-title"><div class="dialog-body"><h2 id="import-title">기록을 불러올까요?</h2><p>현재 브라우저의 여행 기록, 메모, 찜 목록과 루트를 선택한 백업 파일로 바꿉니다. 현재 기록이 필요하면 먼저 내보내 주세요.</p><div class="dialog-actions"><button class="button" id="cancel-import">취소</button><button class="button dark" id="confirm-import">기록 교체하기</button></div></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

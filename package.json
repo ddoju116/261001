@@ -1,0 +1,8 @@
+{
+  "name": "travel-pages",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A personal travel journal, atlas and destination wishlist",
+  "scripts": {"start": "node server.cjs", "build:assets": "node scripts/build-assets.cjs", "check": "node --check app.js && node --check data.js && node --check server.cjs"},
+  "engines": {"node": ">=18"}
+}
